@@ -18,18 +18,9 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public void add(User user) {
-        Session session = null;
-        try {
-            session = sessionFactory.openSession();
-            session.beginTransaction();
-            session.saveOrUpdate(user.getCar());
-            session.saveOrUpdate(user);
-            session.getTransaction().commit();
-        } catch (HibernateException e) {
-            if (session != null) {
-                session.getTransaction().rollback();
-            }
-        }
+        Session session = sessionFactory.getCurrentSession();
+        session.saveOrUpdate(user.getCar());
+        session.saveOrUpdate(user);
     }
 
     @Override
