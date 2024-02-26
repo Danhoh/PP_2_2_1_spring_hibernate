@@ -20,6 +20,8 @@ public class User {
     private String email;
 
     @OneToOne
+    @MapsId
+    @JoinColumn(name = "id")
     private Car car;
 
     public User() {
